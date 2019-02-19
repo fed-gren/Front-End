@@ -1,35 +1,69 @@
+@import url('https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou');
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
 }
 
 #top-panel {
-    width: 730px;
-    height: 650px;
-    border: 1px solid black;
-    border-radius: 2px;
-    background: black;
-    margin: auto;
-    margin-top: 20px;
-    padding: 5px;
-    position: relative;
-    z-index: 1;
+  width: 730px;
+  height: 650px;
+  border: 1px solid black;
+  border-radius: 2px;
+  background: black;
+  margin: auto;
+  margin-top: 20px;
+  padding: 5px;
+  position: relative;
+  z-index: 1;
 }
 
 #screen {
-    width: 720px;
-    height: 640px;
-    border: 1px solid black;
+  width: 720px;
+  height: 640px;
+  border: 1px solid black;
+  position: absolute;
+  background: blue;
+  z-index: 2;
+  color: white;
+  padding: 20px;
+}
+
+#screen-header {
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#screen-contents {
+    position: relative;
+}
+
+#select-arrow {
     position: absolute;
-background: white;
-    z-index: 2;
+    top: 50px;
+    left: 90px;
+}
+
+#game-list {
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-size: 22px;
+    position: absolute;
+    top: 50px;
+    left:120px;
+}
+
+#game-list .game {
+    margin-bottom: 10px;
 }
 
 #controller {
-    width: 730px;
-    height: 200px;
-    border: 1px solid black;
-    border-radius: 2px;
-    margin: auto;
+  width: 730px;
+  height: 180px;
+  border: 1px solid black;
+  border-radius: 2px;
+  margin: auto;
 }
