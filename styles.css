@@ -46,13 +46,16 @@ html {
   top: 4px;
 }
 
-#screen-header {
+.screen-text {
     font-family: 'VT323', monospace;
+    color: rgb(66, 121, 22);
+    text-shadow: -1px 0 #303030, 0 2px #303030, 2px 0 #303030, 0 -1px #303030;  /*글자 외곽선*/
+}
+
+#screen-header {
     text-align: center;
     font-size: 60px;
     font-weight: bold;
-    color: rgb(66, 121, 22);
-    text-shadow: -1px 0 #303030, 0 3px #303030, 3px 0 #303030, 0 -1px #303030;
 }
 
 #screen-contents {
@@ -66,8 +69,6 @@ html {
     font-size: 28px;
     top: 52px;
     left: 80px;
-    color: rgb(66, 121, 22);
-    text-shadow: -1px 0 #303030, 0 2px #303030, 2px 0 #303030, 0 -1px #303030;  /*글자 외곽선*/
 }
 
 #game-list {
@@ -76,12 +77,19 @@ html {
     position: absolute;
     top: 50px;
     left:120px;
-    color: rgb(66, 121, 22);
-    text-shadow: -1px 0 #303030, 0 2px #303030, 2px 0 #303030, 0 -1px #303030;
 }
 
 #game-list .game {
     margin-bottom: 10px;
+}
+
+#help-message {
+    font-family: 'VT323', monospace;
+    position: absolute;
+    text-align: center;
+    bottom: 10px;
+    right: 10px;
+    font-size: 20px;
 }
 
 #controller {
