@@ -1,5 +1,6 @@
 //자바스크립트로 제어할 요소들에 대한 node 선언
 const screen_section = document.getElementById("screen");
+const helpMessage = document.getElementById("help-message");
 const selectArrow_span = document.getElementById("select-arrow");
 const RPSTitle_li = document.getElementById("RPS-title");        //RPS Rock Paper Scissors
 const game2Title_li = document.getElementById("game2-title");
@@ -15,14 +16,26 @@ const btnRight_section = document.getElementById("button-right");
 const btnDown_section = document.getElementById("button-down");
 
 const FIRST_GAME = 1;
+const FIRST_TOP = 52;
 const LAST_GAME = 6;
+const LAST_TOP = 262;
 const GAP_ARROW_TOP = 42;   //42px 만큼 이동.
 let current_arrow_top = 0;
 let current_list = 0;
 
+const DEFAULT_HELP_MESSAGE = "A : Select";
+
 let gameList = [0, RPSTitle_li, game2Title_li, game3Title_li, game4Title_li, game5Title_li, game6Title_li];
 
-let initListArrow = function() {
+let screen = {
+    isList: true    //현재 게임 목록 상태라면 true, 아니면 false 
+}
+
+let setHelpMessage = function (message) {
+    helpMessage.innerText = message;
+}
+
+let initListArrow = function () {
     selectArrow_span.style.top = "52px";
     current_arrow_top = 52;
     current_list_stage = 1;
@@ -30,69 +43,123 @@ let initListArrow = function() {
 }
 
 //테스트용.
-let downListArrow = function() {
+let downListArrow = function () {
     current_arrow_top += GAP_ARROW_TOP;
     selectArrow_span.style.top = current_arrow_top + "px";
     current_list_stage += 1;
     selectedGameEffects();
 }
 
-let upListArrow = function() {
-    current_arrow_top  -= GAP_ARROW_TOP;
+let upListArrow = function () {
+    current_arrow_top -= GAP_ARROW_TOP;
     selectArrow_span.style.top = current_arrow_top + "px";
     current_list_stage -= 1;
     selectedGameEffects();
 }
 
-let selectedGameEffects = function() {
-    for(let i=1; i<=6; i+=1) {
-        if(i === current_list_stage) gameList[i].style.color = "rgb(66, 180, 22)";
+let goToTopListArrow = function () { //맨 아래에서 다시 아래버튼 눌렀을 때, 화살표 제일 위로
+    current_arrow_top = FIRST_TOP;
+    selectArrow_span.style.top = current_arrow_top + "px";
+    current_list_stage = FIRST_GAME;
+    selectedGameEffects();
+}
+
+let goToBottomListArrow = function () {  //맨 위에서 다시 up 버튼 눌렀을 때, 화살표 제일 아래로.
+    current_arrow_top = LAST_TOP;
+    selectArrow_span.style.top = current_arrow_top + "px";
+    current_list_stage = LAST_GAME;
+    selectedGameEffects();
+}
+
+let selectedGameEffects = function () {
+    for (let i = 1; i <= 6; i += 1) {
+        if (i === current_list_stage) gameList[i].style.color = "rgb(66, 180, 22)";
         else gameList[i].style.color = "rgb(66, 121, 22)";
-        // if(i === current_list_stage) gameList[i].style.color = "#303030";
-        // else gameList[i].style.color = "rgb(66, 121, 22)";
     }
 }
 
-let choiceGame = function() {
-    console.log(gameList[current_list_stage]);
+let choiceGame = function () {
+    // console.log(gameList[current_list_stage]);
+    switch (gameList[current_list_stage]) {
+        case RPSTitle_li:
+            startRPS();
+            screen.isList = false;
+            break;
+        case game2Title_li:
+            console.log("game2 choice");
+            break;
+        case game3Title_li:
+            console.log("game3 choice");
+            break;
+        case game4Title_li:
+            console.log("game4 choice");
+            break;
+        case game5Title_li:
+            console.log("game5 choice");
+            break;
+        case game6Title_li:
+            console.log("game6 choice");
+            break;
+        default:
+            console.log("game choice error");
+            break;
+    }
 }
 
 
-btnA_section.addEventListener('click', function() {
-    console.log('A');
-    choiceGame();
+btnA_section.addEventListener('click', function () {
+    if (screen.isList) {
+        console.log("choice game");
+        choiceGame();
+    } else if (RPS_RULE === RPS.status) {
+        console.log("play game");
+        playRPS();
+    } else if (RPS_PLAYING === RPS.status) {
+        compare();
+    }
 });
-btnB_section.addEventListener('click', function() {
-    console.log("B");
+
+btnB_section.addEventListener('click', function () {
+    if (RPS_RULE === RPS.status) {
+        exitRPS();
+        screen.isList = true;
+    } else if (RPS_PLAYING === RPS.status) {
+        exitRPS();
+        screen.isList = true;
+    }
+
 });
-btnUp_section.addEventListener('click', function() {
-    if(1 === current_list_stage) {
-        selectArrow_span.style.top = "262px";
-        current_arrow_top = 262;
-        current_list_stage = 6;
-        selectedGameEffects();
+
+btnUp_section.addEventListener('click', function () {
+    if (FIRST_GAME === current_list_stage) {
+        goToBottomListArrow();
     } else {
         upListArrow();
     }
 });
-btnLeft_section.addEventListener('click', function() {
-    console.log("left");
+btnLeft_section.addEventListener('click', function () {
+    if(RPS_PLAYING === RPS.status) {
+        moveRPS("left");
+        console.log("RPS move to left");
+    }
 });
-btnRight_section.addEventListener('click', function() {
-    console.log("right");
+btnRight_section.addEventListener('click', function () {
+    if(RPS_PLAYING === RPS.status) {
+        moveRPS("right");
+        console.log("RPS move to right");
+    }
 });
-btnDown_section.addEventListener('click', function() {
-    if(6 === current_list_stage) {
-        initListArrow();
+btnDown_section.addEventListener('click', function () {
+    if (LAST_GAME === current_list_stage) {
+        goToTopListArrow();
     } else {
         downListArrow();
     }
 });
 
-
-let main = function() {
+let main = function () {
     console.log("app.js loaded");
-    initListArrow();
+    goToTopListArrow();
 }
 
 main();

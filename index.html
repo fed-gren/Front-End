@@ -4,13 +4,14 @@
 <head>
     <title>Game-Man!</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="RPS.css">
 </head>
 
 <body>
     <section id="game-man">
         <section id="top-panel">
-            <section id="screen">
-                <p id="screen-header" class="screen-text">&#x1F3AE;    Game Select    &#x1F3AE;</p>
+            <section id="screen" class="screen-game-select">
+                <p id="screen-header" class="screen-text">&#x1F3AE; Game Select &#x1F3AE;</p>
                 <section id="screen-contents">
                     <span id="select-arrow" class="screen-text">&#x27A1;</span>
                     <section id="game-list">
@@ -23,11 +24,56 @@
                             <li class="game screen-text" id="game6-title">6. Coming soon</li>
                         </ul>
                     </section>
-                    <section id="message">
-                        <p id="help-message" class="screen-text">A : Select</p>
+                </section>
+            </section>
+
+            <section id="RPS" class="screen-RPS">
+                <p id="RPS-header" class="screen-text">
+                    <span id="RPS-header-R">Rock </span>
+                    <span id="RPS-header-P">Paper</span>
+                    <span id="RPS-header-S">Scissors!</span></p>
+                <section id="RPS-contents">
+                    <section id="RPS-rules">
+                        <p class="screen-text">가위바위보를 이겨서 상대방의 체력을 깎아라!</p><br>
+                        <p class="screen-text">가위바위보로 마왕을 무찌르고 세상을 구하자!</p><br>
+                    </section>
+                    <section id="RPS-play">
+                        <section id="enemy-side">
+                            <section id="enemy-life">
+                                <div id="enemy-life1" class="heart"></div>
+                                <div id="enemy-life2" class="heart"></div>
+                                <div id="enemy-life3" class="heart"></div>
+                            </section>
+                            <section id="enemy-smile-face">enemy</section>
+                            <section id="enemy-RPS">
+                                <section id="enemy-r" class="r"></section>
+                                <section id="enemy-p" class="p"></section>
+                                <section id="enemy-s" class="s"></section>
+                            </section>
+                            <!-- <section id="enemy-sad-face"></section> -->
+                        </section>
+                        <section id="result-side" class="screen-text">
+                            <span id="result">Win!</span>
+                        </section>
+                        <section id="player-side">
+                            <section id="player-RPS">
+                                <section id="player-r" class="r"></section>
+                                <section id="player-p" class="p"></section>
+                                <section id="player-s" class="s"></section>
+                            </section>
+                            <section id="player-life">
+                                <div id="player-life1" class="heart"></div>
+                                <div id="player-life2" class="heart"></div>
+                                <div id="player-life3" class="heart"></div>
+                            </section>
+                            <section id="player-back">player</section>
+                        </section>
                     </section>
                 </section>
             </section>
+            <section class="message">
+                    <p id="help-message" class="screen-text">A : Select</p>
+                </section>
         </section>
         <section id="controller">
             <section id="buttons-action">
@@ -48,6 +94,7 @@
             </section>
         </section>
     </section>
+    <script src="./RPS.js"></script>
     <script src="./app.js"></script>
 </body>
 
