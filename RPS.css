@@ -85,6 +85,7 @@
   border: 1px solid black;
   border-radius: 5px;
   display: none;
+  transform: rotate(180deg);
 }
 
 #result-side {
