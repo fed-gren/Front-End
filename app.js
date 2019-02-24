@@ -108,6 +108,9 @@ let choiceGame = function () {
 
 
 btnA_section.addEventListener('click', function () {
+    console.log("clicked A, RPS status : " + RPS.status);
+    if(RPS_GAME_OVER === RPS.status ||
+        RPS_VICTORY === RPS.status) return;
     if (screen.isList) {
         console.log("choice game");
         choiceGame();
@@ -120,6 +123,9 @@ btnA_section.addEventListener('click', function () {
 });
 
 btnB_section.addEventListener('click', function () {
+    console.log("clicked B, RPS status : " + RPS.status);
+    if(RPS_GAME_OVER === RPS.status ||
+        RPS_VICTORY === RPS.status) return;
     if (RPS_RULE === RPS.status) {
         exitRPS();
         screen.isList = true;
@@ -131,6 +137,8 @@ btnB_section.addEventListener('click', function () {
 });
 
 btnUp_section.addEventListener('click', function () {
+    if(RPS_GAME_OVER === RPS.status ||
+        RPS_VICTORY === RPS.status) return;
     if (FIRST_GAME === current_list_stage) {
         goToBottomListArrow();
     } else {
@@ -138,18 +146,24 @@ btnUp_section.addEventListener('click', function () {
     }
 });
 btnLeft_section.addEventListener('click', function () {
+    if(RPS_GAME_OVER === RPS.status ||
+        RPS_VICTORY === RPS.status) return;
     if(RPS_PLAYING === RPS.status) {
         moveRPS("left");
         console.log("RPS move to left");
     }
 });
 btnRight_section.addEventListener('click', function () {
+    if(RPS_GAME_OVER === RPS.status ||
+        RPS_VICTORY === RPS.status) return;
     if(RPS_PLAYING === RPS.status) {
         moveRPS("right");
         console.log("RPS move to right");
     }
 });
 btnDown_section.addEventListener('click', function () {
+    if(RPS_GAME_OVER === RPS.status ||
+        RPS_VICTORY === RPS.status) return;
     if (LAST_GAME === current_list_stage) {
         goToTopListArrow();
     } else {

@@ -8,6 +8,8 @@ const NUM_PLAYER_MAX_LIFE = 3;
 const RPS_NO_PLAYING = 0;
 const RPS_RULE = 1;
 const RPS_PLAYING = 2;
+const RPS_VICTORY = 3;
+const RPS_GAME_OVER = 4;
 
 let player = {
     life: NUM_PLAYER_MAX_LIFE, //현재 체력
@@ -23,6 +25,7 @@ let enemy = {
 
 let RPS = {
     status: RPS_NO_PLAYING, //현재 진행 상테
+    stage: 1
 }
 
 const RPSScreen_section = document.getElementById("RPS");
@@ -39,12 +42,20 @@ const RPSPlayerR_section = document.getElementById("player-r");
 const RPSPlayerP_section = document.getElementById("player-p");
 const RPSPlayerS_section = document.getElementById("player-s");
 
+const RPSEnemyLife1_div = document.getElementById("enemy-life3");
+const RPSEnemyLife2_div = document.getElementById("enemy-life2");
+const RPSEnemyLife3_div = document.getElementById("enemy-life1");
+
 const RPSPlayerLife1_div = document.getElementById("player-life1");
 const RPSPlayerLife2_div = document.getElementById("player-life2");
 const RPSPlayerLife3_div = document.getElementById("player-life3");
 
 const STYLE_SELECTED_BORDER = "4px solid #101010";
 const STYLE_UNSELECTED_BORDER = "1px solid #303030";
+
+const RPSPlayerLifeArray = [0, RPSPlayerLife1_div, RPSPlayerLife2_div, RPSPlayerLife3_div];
+const RPS_LIFE_IMAGE_URL = "url(./images/life.png)";
+const RPS_NO_LIFE_IMAGE_URL = "url(./images/no-life.png)";
 
 let showRPSRules = function () {
     setTimeout(function () {
@@ -85,6 +96,7 @@ let exitRPS = function () {
     hideRPSTitle();
     setHelpMessage(DEFAULT_HELP_MESSAGE);
     RPS.status = RPS_NO_PLAYING;
+    screen.isList = true;
 }
 
 let startRPS = function () {
@@ -94,6 +106,95 @@ let startRPS = function () {
     showRPSTitle();
 }
 
+let RPSGameWin = function() {
+    // setRPSResultMessage("Victory!!!");
+    RPS.status = RPS_VICTORY;
+    for(let i=0; i<=5; i+=1) {
+        setTimeout(function() {
+            setRPSResultMessage("Victory! Exit " + (5-i));
+            if(5 === i) exitRPS();
+        },i*1000);
+    }
+}
+
+let RPSGameOver = function() {
+    RPS.status = RPS_GAME_OVER;
+    for(let i=0; i<=5; i+=1) {
+        setTimeout(function() {
+            setRPSResultMessage("Game Over..Exit " + (5-i));
+            if(5 === i) exitRPS();
+        },i*1000);
+    }
+}
+
+let setPlayerLife = function () {
+    switch (player.life) {
+        case 0:
+            //game over
+            console.log("player life : " + player.life)
+            RPSPlayerLife1_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSPlayerLife2_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSPlayerLife3_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSGameOver();
+            break;
+        case 1:
+        console.log("player life : " + player.life)
+            RPSPlayerLife1_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSPlayerLife2_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSPlayerLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            break;
+        case 2:
+        console.log("player life : " + player.life)
+            RPSPlayerLife1_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSPlayerLife2_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            RPSPlayerLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            break;
+        case 3:
+        console.log("player life : " + player.life)
+            RPSPlayerLife1_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            RPSPlayerLife2_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            RPSPlayerLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            break;
+        default:
+            console.log("set player life error");
+            break;
+    }
+}
+
+let setEnemyLife = function () {
+    switch (enemy.life) {
+        case 0:
+            //Victory!!
+            console.log("enemy life : " + enemy.life)
+            RPSEnemyLife1_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSEnemyLife2_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSEnemyLife3_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSGameWin();
+            break;
+        case 1:
+        console.log("enemy life : " + enemy.life)
+            RPSEnemyLife1_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSEnemyLife2_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSEnemyLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            break;
+        case 2:
+        console.log("enemy life : " + enemy.life)
+            RPSEnemyLife1_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
+            RPSEnemyLife2_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            RPSEnemyLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            break;
+        case 3:
+        console.log("enemy life : " + enemy.life)
+            RPSEnemyLife1_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            RPSEnemyLife2_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            RPSEnemyLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
+            break;
+        default:
+            console.log("set enemy life error");
+            break;
+    }
+}
+
 let initRPS = function () {
     //가위바위보 게임 시작시 초기화 세팅하는 함수.
     player.choice = ROCK;
@@ -101,6 +202,11 @@ let initRPS = function () {
     RPSEnemyR_section.style.display = "none";
     RPSEnemyP_section.style.display = "none";
     RPSEnemyS_section.style.display = "none";
+
+    player.life = NUM_PLAYER_MAX_LIFE;
+    enemy.life = NUM_ENEMY_MAX_LIFE;
+    setPlayerLife();
+    setEnemyLife();
 
     // RPSPlayerLife1_div.style.backgroundImage = "url('life.png')";
 }
@@ -175,7 +281,7 @@ let showEnemyChoice = function (enemyChoice) {
     }
 }
 
-let setRPSResultMessage = function(message) {
+let setRPSResultMessage = function (message) {
     RPSResult_span.innerText = message;
 }
 
@@ -196,6 +302,9 @@ let compare = function () {
         case "32":
             console.log("Player win!");
             setRPSResultMessage("Player win");
+            //상대 체력 깍고 적용하기.
+            enemy.life -= 1;
+            setEnemyLife();
             break;
 
         case "31": //player loses : s-r, r-p, p-s
@@ -203,6 +312,9 @@ let compare = function () {
         case "23":
             console.log("Player loses!");
             setRPSResultMessage("Player loses");
+            //내 체력 깍고 적용하기.
+            player.life -= 1;
+            setPlayerLife();
             break;
         default:
             console.log("compare error");
