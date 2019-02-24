@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou');
-@import url('https://fonts.googleapis.com/css?family=VT323');
+@import url("https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou");
+@import url("https://fonts.googleapis.com/css?family=VT323");
 
 * {
   margin: 0;
@@ -9,17 +9,18 @@
 }
 
 html {
-    background-image: url(./images/dot-animated-pattern3.gif);
-    background-size: 50%;
+  background-image: url(./images/dot-animated-pattern3.gif);
+  background-size: 50%;
 }
 
 #game-man {
-    width: 730px;
-    margin: 20px auto;
-    background: black;
-    border: 1px solid black;
-    border-radius: 6px;
-    box-shadow: 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black, 5px 5px black, 6px 6px black, 7px 7px black;
+  width: 730px;
+  margin: 20px auto;
+  background: black;
+  border: 1px solid black;
+  border-radius: 6px;
+  box-shadow: 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black,
+    5px 5px black, 6px 6px black, 7px 7px black;
 }
 
 #top-panel {
@@ -47,50 +48,50 @@ html {
 }
 
 .screen-text {
-    font-family: 'VT323', monospace;
-    color: rgb(66, 121, 22);
-    text-shadow: -1px 0 #303030, 0 2px #303030, 2px 0 #303030, 0 -1px #303030;  /*글자 외곽선*/
+  font-family: "VT323", monospace;
+  color: rgb(66, 121, 22);
+  text-shadow: -1px 0 #303030, 0 2px #303030, 2px 0 #303030, 0 -1px #303030; /*글자 외곽선*/
 }
 
 #screen-header {
-    text-align: center;
-    font-size: 60px;
-    font-weight: bold;
+  text-align: center;
+  font-size: 60px;
+  font-weight: bold;
 }
 
 #screen-contents {
-    position: relative;
-    height: 370px;
+  position: relative;
+  height: 370px;
 }
 
 #select-arrow {
-    position: absolute;
-    text-align: center;
-    font-size: 28px;
-    top: 52px;
-    left: 80px;
+  position: absolute;
+  text-align: center;
+  font-size: 28px;
+  top: 52px;
+  left: 80px;
 }
 
 #game-list {
-    font-family: 'VT323', monospace;
-    font-size: 32px;
-    position: absolute;
-    top: 50px;
-    left:120px;
+  font-family: "VT323", monospace;
+  font-size: 32px;
+  position: absolute;
+  top: 50px;
+  left: 120px;
 }
 
 #game-list .game {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 #help-message {
-    font-family: 'VT323', monospace;
-    position: absolute;
-    text-align: center;
-    bottom: 20px;
-    right: 20px;
-    font-size: 20px;
-    z-index: 9999;
+  font-family: "VT323", monospace;
+  position: absolute;
+  text-align: center;
+  bottom: 20px;
+  right: 20px;
+  font-size: 20px;
+  z-index: 9999;
 }
 
 #controller {
@@ -105,111 +106,112 @@ html {
 }
 
 #buttons-action {
-    /* border: 1px solid white; */
-    width: 450px;
-    height: 150px;
-    position: absolute;
-    left: 50px;
-    top: 15px;
-    text-align: center;
+  /* border: 1px solid white; */
+  width: 450px;
+  height: 150px;
+  position: absolute;
+  left: 50px;
+  top: 15px;
+  text-align: center;
 }
 
-#button-A, #button-B {
-    border: 1px solid black;
-    border-radius: 50%;
-    position: absolute;
-    width: 130px;
-    height: 130px;
-    font-family: 'ZCOOL QingKe HuangYou', cursive;
-    font-size: 120px;
-    top: 10px;
-    line-height: 130px;
-    cursor: pointer;
+#button-A,
+#button-B {
+  border: 1px solid black;
+  border-radius: 50%;
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  font-family: "ZCOOL QingKe HuangYou", cursive;
+  font-size: 120px;
+  top: 10px;
+  line-height: 130px;
+  cursor: pointer;
 }
 
 #button-A {
-    left: 60px;
-    background: red;
-    box-shadow: 0px 10px rgb(224, 0, 0);
-    color: rgb(167, 0, 0);
+  left: 60px;
+  background: red;
+  box-shadow: 0px 10px rgb(224, 0, 0);
+  color: rgb(167, 0, 0);
 }
 
 #button-A:active {
-    top: 15px;
-    box-shadow: 0px 5px rgb(224, 0, 0);
+  top: 15px;
+  box-shadow: 0px 5px rgb(224, 0, 0);
 }
 
 #button-B {
-    left: 260px;
-    background: yellow;
-    box-shadow: 0px 10px rgb(224, 224, 0);
-    color: rgb(167, 167, 0);
+  left: 260px;
+  background: yellow;
+  box-shadow: 0px 10px rgb(224, 224, 0);
+  color: rgb(167, 167, 0);
 }
 
 #button-B:active {
-    top: 15px;
-    box-shadow: 0px 5px rgb(224, 224, 0);
+  top: 15px;
+  box-shadow: 0px 5px rgb(224, 224, 0);
 }
 
 #buttons-direction {
-    /* border: 1px solid white; */
-    width: 150px;
-    height: 150px;
-    position: absolute;
-    left: 530px;
-    top: 15px;
+  /* border: 1px solid white; */
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: 530px;
+  top: 15px;
 }
 
 .direction-part {
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    /* border: 1px solid white; */
-    text-align: center;
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  /* border: 1px solid white; */
+  text-align: center;
 }
 
 #direction-part-up {
-    top: 0;
+  top: 0;
 }
 
 #direction-part-side {
-    top: 50px;
+  top: 50px;
 }
 #direction-part-down {
-    top: 100px;
+  top: 100px;
 }
 
 .button-direction {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    top: 5px;
-    font-size: 30px;
-    color: rgb(14, 86, 114);
-    line-height: 40px;
-    background: rgb(23, 134, 179);
-    box-shadow: 0 4px rgb(18, 107, 143);
-    cursor: pointer;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  top: 5px;
+  font-size: 30px;
+  color: rgb(14, 86, 114);
+  line-height: 40px;
+  background: rgb(23, 134, 179);
+  box-shadow: 0 4px rgb(18, 107, 143);
+  cursor: pointer;
 }
 
 .button-direction:active {
-    top: 7px;
-    box-shadow: 0 2px rgb(18, 107, 143);
+  top: 7px;
+  box-shadow: 0 2px rgb(18, 107, 143);
 }
- 
+
 #button-up {
-    left: 55px;
+  left: 55px;
 }
 
 #button-left {
-    left: 10px;
+  left: 10px;
 }
 
 #button-right {
-    left: 100px;
+  left: 100px;
 }
 
 #button-down {
-    left: 55px;
+  left: 55px;
 }

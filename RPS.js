@@ -46,6 +46,9 @@ const RPSEnemyLife1_div = document.getElementById("enemy-life3");
 const RPSEnemyLife2_div = document.getElementById("enemy-life2");
 const RPSEnemyLife3_div = document.getElementById("enemy-life1");
 
+const RPSEnemyImage_img = document.getElementById("enemy-image");
+const RPSPlayerImage_img = document.getElementById("player-image");
+
 const RPSPlayerLife1_div = document.getElementById("player-life1");
 const RPSPlayerLife2_div = document.getElementById("player-life2");
 const RPSPlayerLife3_div = document.getElementById("player-life3");
@@ -106,24 +109,24 @@ let startRPS = function () {
     showRPSTitle();
 }
 
-let RPSGameWin = function() {
+let RPSGameWin = function () {
     // setRPSResultMessage("Victory!!!");
     RPS.status = RPS_VICTORY;
-    for(let i=0; i<=5; i+=1) {
-        setTimeout(function() {
-            setRPSResultMessage("Victory! Exit " + (5-i));
-            if(5 === i) exitRPS();
-        },i*1000);
+    for (let i = 0; i <= 5; i += 1) {
+        setTimeout(function () {
+            setRPSResultMessage("Victory! Exit " + (5 - i));
+            if (5 === i) exitRPS();
+        }, i * 1000);
     }
 }
 
-let RPSGameOver = function() {
+let RPSGameOver = function () {
     RPS.status = RPS_GAME_OVER;
-    for(let i=0; i<=5; i+=1) {
-        setTimeout(function() {
-            setRPSResultMessage("Game Over..Exit " + (5-i));
-            if(5 === i) exitRPS();
-        },i*1000);
+    for (let i = 0; i <= 5; i += 1) {
+        setTimeout(function () {
+            setRPSResultMessage("Game Over..Exit " + (5 - i));
+            if (5 === i) exitRPS();
+        }, i * 1000);
     }
 }
 
@@ -138,19 +141,19 @@ let setPlayerLife = function () {
             RPSGameOver();
             break;
         case 1:
-        console.log("player life : " + player.life)
+            console.log("player life : " + player.life)
             RPSPlayerLife1_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
             RPSPlayerLife2_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
             RPSPlayerLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
             break;
         case 2:
-        console.log("player life : " + player.life)
+            console.log("player life : " + player.life)
             RPSPlayerLife1_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
             RPSPlayerLife2_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
             RPSPlayerLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
             break;
         case 3:
-        console.log("player life : " + player.life)
+            console.log("player life : " + player.life)
             RPSPlayerLife1_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
             RPSPlayerLife2_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
             RPSPlayerLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
@@ -172,19 +175,19 @@ let setEnemyLife = function () {
             RPSGameWin();
             break;
         case 1:
-        console.log("enemy life : " + enemy.life)
+            console.log("enemy life : " + enemy.life)
             RPSEnemyLife1_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
             RPSEnemyLife2_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
             RPSEnemyLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
             break;
         case 2:
-        console.log("enemy life : " + enemy.life)
+            console.log("enemy life : " + enemy.life)
             RPSEnemyLife1_div.style.backgroundImage = RPS_NO_LIFE_IMAGE_URL;
             RPSEnemyLife2_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
             RPSEnemyLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
             break;
         case 3:
-        console.log("enemy life : " + enemy.life)
+            console.log("enemy life : " + enemy.life)
             RPSEnemyLife1_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
             RPSEnemyLife2_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
             RPSEnemyLife3_div.style.backgroundImage = RPS_LIFE_IMAGE_URL;
@@ -207,6 +210,9 @@ let initRPS = function () {
     enemy.life = NUM_ENEMY_MAX_LIFE;
     setPlayerLife();
     setEnemyLife();
+
+    RPSEnemyImage_img.src = "./images/enemy-idle.png";
+    RPSPlayerImage_img = "./images/player.png";
 
     // RPSPlayerLife1_div.style.backgroundImage = "url('life.png')";
 }
@@ -305,6 +311,7 @@ let compare = function () {
             //상대 체력 깍고 적용하기.
             enemy.life -= 1;
             setEnemyLife();
+            RPSEnemyImage_img.src = "./images/enemy-loses.png";
             break;
 
         case "31": //player loses : s-r, r-p, p-s
@@ -315,6 +322,7 @@ let compare = function () {
             //내 체력 깍고 적용하기.
             player.life -= 1;
             setPlayerLife();
+            RPSEnemyImage_img.src = "./images/enemy-win.png";
             break;
         default:
             console.log("compare error");
