@@ -139,10 +139,12 @@ btnB_section.addEventListener('click', function () {
 btnUp_section.addEventListener('click', function () {
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
-    if (FIRST_GAME === current_list_stage) {
-        goToBottomListArrow();
-    } else {
-        upListArrow();
+    if(true === screen.isList) {
+        if (FIRST_GAME === current_list_stage) {
+            goToBottomListArrow();
+        } else {
+            upListArrow();
+        }
     }
 });
 btnLeft_section.addEventListener('click', function () {
@@ -164,10 +166,12 @@ btnRight_section.addEventListener('click', function () {
 btnDown_section.addEventListener('click', function () {
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
-    if (LAST_GAME === current_list_stage) {
-        goToTopListArrow();
-    } else {
-        downListArrow();
+    if(true === screen.isList) {
+        if (LAST_GAME === current_list_stage) {
+            goToTopListArrow();
+        } else {
+            downListArrow();
+        }
     }
 });
 
