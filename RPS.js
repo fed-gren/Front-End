@@ -301,6 +301,7 @@ let compare = function () {
         case "33":
             console.log("draw");
             setRPSResultMessage("DRAW");
+            RPSEnemyImage_img.src = "./images/enemy-idle.png";
             break;
 
         case "13": //player win : r-s, p-r, s-p
