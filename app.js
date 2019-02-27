@@ -57,11 +57,11 @@ let screen = {
     isList: true    //현재 게임 목록 상태라면 true, 아니면 false 
 }
 
-let setHelpMessage = function (message) {
+let setHelpMessage = (message) => {
     helpMessage.innerText = message;
 }
 
-let initListArrow = function () {
+let initListArrow = () => {
     selectArrow_div.style.top = "52px";
     current_arrow_top = 52;
     current_list_stage = 1;
@@ -69,42 +69,42 @@ let initListArrow = function () {
 }
 
 //테스트용.
-let downListArrow = function () {
+let downListArrow = () => {
     current_arrow_top += gameListObj.arrowMovingDist;
     selectArrow_div.style.top = current_arrow_top + "px";
     current_list_stage += 1;
     selectedGameEffects();
 }
 
-let upListArrow = function () {
+let upListArrow = () => {
     current_arrow_top -= gameListObj.arrowMovingDist;
     selectArrow_div.style.top = current_arrow_top + "px";
     current_list_stage -= 1;
     selectedGameEffects();
 }
 
-let goToTopListArrow = function () { //맨 아래에서 다시 아래버튼 눌렀을 때, 화살표 제일 위로
+let goToTopListArrow = () => { //맨 아래에서 다시 아래버튼 눌렀을 때, 화살표 제일 위로
     current_arrow_top = gameListObj.firstTop;
     selectArrow_div.style.top = current_arrow_top + "px";
     current_list_stage = gameListObj.firstIdx;
     selectedGameEffects();
 }
 
-let goToBottomListArrow = function () {  //맨 위에서 다시 up 버튼 눌렀을 때, 화살표 제일 아래로.
+let goToBottomListArrow = () => {  //맨 위에서 다시 up 버튼 눌렀을 때, 화살표 제일 아래로.
     current_arrow_top = gameListObj.lastTop;
     selectArrow_div.style.top = current_arrow_top + "px";
     current_list_stage = gameListObj.lastIdx;
     selectedGameEffects();
 }
 
-let selectedGameEffects = function () {
+let selectedGameEffects = () => {
     for (let i = 1; i <= 6; i += 1) {
         if (i === current_list_stage) gameList[i].style.color = "rgb(66, 180, 22)";
         else gameList[i].style.color = "rgb(66, 121, 22)";
     }
 }
 
-let choiceGame = function () {
+let choiceGame = () => {
     // console.log(gameList[current_list_stage]);
     switch (gameList[current_list_stage]) {
         case RPSTitle_li:
@@ -133,7 +133,7 @@ let choiceGame = function () {
 }
 
 
-btnA_section.addEventListener('click', function () {
+btnA_section.addEventListener('click', () => {
     console.log("clicked A, RPS status : " + RPS.status);
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
@@ -148,7 +148,7 @@ btnA_section.addEventListener('click', function () {
     }
 });
 
-btnB_section.addEventListener('click', function () {
+btnB_section.addEventListener('click', () => {
     console.log("clicked B, RPS status : " + RPS.status);
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
@@ -162,7 +162,7 @@ btnB_section.addEventListener('click', function () {
 
 });
 
-btnUp_section.addEventListener('click', function () {
+btnUp_section.addEventListener('click', () => {
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
     if(true === screen.isList) {
@@ -173,7 +173,7 @@ btnUp_section.addEventListener('click', function () {
         }
     }
 });
-btnLeft_section.addEventListener('click', function () {
+btnLeft_section.addEventListener('click', () => {
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
     if (RPS_PLAYING === RPS.status) {
@@ -181,7 +181,7 @@ btnLeft_section.addEventListener('click', function () {
         console.log("RPS move to left");
     }
 });
-btnRight_section.addEventListener('click', function () {
+btnRight_section.addEventListener('click', () => {
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
     if (RPS_PLAYING === RPS.status) {
@@ -189,7 +189,7 @@ btnRight_section.addEventListener('click', function () {
         console.log("RPS move to right");
     }
 });
-btnDown_section.addEventListener('click', function () {
+btnDown_section.addEventListener('click', () => {
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
     if(true === screen.isList) {
@@ -201,7 +201,7 @@ btnDown_section.addEventListener('click', function () {
     }
 });
 
-let main = function () {
+let main = () => {
     console.log("app.js loaded");
     goToTopListArrow();
 }

@@ -57,39 +57,39 @@ const RPSPlayerLifeArray = [0, RPSPlayerLife1_div, RPSPlayerLife2_div, RPSPlayer
 const RPS_LIFE_IMAGE_URL = "url(./images/life.png)";
 const RPS_NO_LIFE_IMAGE_URL = "url(./images/no-life.png)";
 
-let showRPSRules = function () {
-    setTimeout(function () {
+let showRPSRules = () => {
+    setTimeout(() => {
         RPSRules_section.style.display = "block";
         RPS.status = RPS_RULE;
         setHelpMessage("A : Start, B : Exit");
     }, 500);
 }
 
-let hideRPSRules = function () {
+let hideRPSRules = () => {
     RPSRules_section.style.display = "none";
 }
 
-let showRPSTitle = function () {
-    setTimeout(function () {
+let showRPSTitle = () => {
+    setTimeout(() => {
         RPSHeaderR_span.style.visibility = "visible";
     }, 500);
-    setTimeout(function () {
+    setTimeout(() => {
         RPSHeaderP_span.style.visibility = "visible";
     }, 1000);
-    setTimeout(function () {
+    setTimeout(() => {
         RPSHeaderS_span.style.visibility = "visible";
         showRPSRules();
     }, 1500);
 }
 
-let hideRPSTitle = function () {
+let hideRPSTitle = () => {
     RPSHeaderR_span.style.visibility = "hidden";
     RPSHeaderP_span.style.visibility = "hidden";
     RPSHeaderS_span.style.visibility = "hidden";
     hideRPSRules();
 }
 
-let exitRPS = function () {
+let exitRPS = () => {
     RPSScreen_section.style.display = "none";
     screen_section.style.display = "block";
     RPSPlay_section.style.display = "none";
@@ -99,35 +99,35 @@ let exitRPS = function () {
     screen.isList = true;
 }
 
-let startRPS = function () {
+let startRPS = () => {
     //가위바위보 게임 선택한 이후 실행될 함수. 가위바위보 화면을 띄운다.
     RPSScreen_section.style.display = "block";
     setHelpMessage("");
     showRPSTitle();
 }
 
-let RPSGameWin = function () {
+let RPSGameWin = () => {
     // setRPSResultMessage("Victory!!!");
     RPS.status = RPS_VICTORY;
     for (let i = 0; i <= 5; i += 1) {
-        setTimeout(function () {
+        setTimeout(() => {
             setRPSResultMessage("Victory! Exit " + (5 - i));
             if (5 === i) exitRPS();
         }, i * 1000);
     }
 }
 
-let RPSGameOver = function () {
+let RPSGameOver = () => {
     RPS.status = RPS_GAME_OVER;
     for (let i = 0; i <= 5; i += 1) {
-        setTimeout(function () {
+        setTimeout(() => {
             setRPSResultMessage("Game Over..Exit " + (5 - i));
             if (5 === i) exitRPS();
         }, i * 1000);
     }
 }
 
-let setPlayerLife = function () {
+let setPlayerLife = () => {
     switch (player.life) {
         case 0:
             //game over
@@ -161,7 +161,7 @@ let setPlayerLife = function () {
     }
 }
 
-let setEnemyLife = function () {
+let setEnemyLife = () => {
     switch (enemy.life) {
         case 0:
             //Victory!!
@@ -195,7 +195,7 @@ let setEnemyLife = function () {
     }
 }
 
-let initRPS = function () {
+let initRPS = () => {
     //가위바위보 게임 시작시 초기화 세팅하는 함수.
     player.choice = ROCK;
     applyRPSBorder(player.choice);
@@ -214,7 +214,7 @@ let initRPS = function () {
     // RPSPlayerLife1_div.style.backgroundImage = "url('life.png')";
 }
 
-let applyRPSBorder = function (playerChoice) {
+let applyRPSBorder = (playerChoice) => {
     switch (playerChoice) {
         case ROCK:
             RPSPlayerR_section.style.border = STYLE_SELECTED_BORDER;
@@ -237,7 +237,7 @@ let applyRPSBorder = function (playerChoice) {
     }
 }
 
-let moveRPS = function (dir) {
+let moveRPS = (dir) => {
     if ("left" === dir) {
         if (ROCK === player.choice) player.choice = SCISSORS;
         else player.choice -= 1;
@@ -251,7 +251,7 @@ let moveRPS = function (dir) {
     applyRPSBorder(player.choice);
 }
 
-let playRPS = function () {
+let playRPS = () => {
     //가위바위보 게임 시작. Rule 화면에서 A선택시 실행.
     hideRPSRules();
     RPSPlay_section.style.display = "block";
@@ -261,7 +261,7 @@ let playRPS = function () {
     initRPS();
 }
 
-let showEnemyChoice = function (enemyChoice) {
+let showEnemyChoice = (enemyChoice) => {
     switch (enemyChoice) {
         case ROCK:
             RPSEnemyR_section.style.display = "inline-block";
@@ -284,11 +284,11 @@ let showEnemyChoice = function (enemyChoice) {
     }
 }
 
-let setRPSResultMessage = function (message) {
+let setRPSResultMessage = (message) => {
     RPSResult_span.innerText = message;
 }
 
-let compare = function () {
+let compare = () => {
     enemy.choice = Math.floor(Math.random() * 3 + 1); //1~3부터 랜덤.
     showEnemyChoice(enemy.choice);
     let choices = "" + player.choice + enemy.choice;
