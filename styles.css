@@ -67,9 +67,12 @@ html {
 #select-arrow {
   position: absolute;
   text-align: center;
-  font-size: 28px;
   top: 52px;
   left: 80px;
+  background-image: url(./images/pixeled-hand.png);
+  background-size: cover;
+  width: 26px;
+  height: 26px;
 }
 
 #game-list {

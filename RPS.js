@@ -2,9 +2,6 @@ const ROCK = 1;
 const PAPER = 2;
 const SCISSORS = 3;
 
-const NUM_ENEMY_MAX_LIFE = 3;
-const NUM_PLAYER_MAX_LIFE = 3;
-
 const RPS_NO_PLAYING = 0;
 const RPS_RULE = 1;
 const RPS_PLAYING = 2;
@@ -12,14 +9,14 @@ const RPS_VICTORY = 3;
 const RPS_GAME_OVER = 4;
 
 let player = {
-    life: NUM_PLAYER_MAX_LIFE, //현재 체력
-    maxLife: NUM_PLAYER_MAX_LIFE,   //최대 체력
+    life: 3, //현재 체력
+    maxLife: 3,   //최대 체력
     choice: ROCK   //가위 바위 보 중 선택한 값.
 }
 
 let enemy = {
-    life: NUM_ENEMY_MAX_LIFE,
-    maxLife: NUM_ENEMY_MAX_LIFE,
+    life: 3,
+    maxLife: 3,
     choice: ROCK
 }
 
@@ -206,13 +203,13 @@ let initRPS = function () {
     RPSEnemyP_section.style.display = "none";
     RPSEnemyS_section.style.display = "none";
 
-    player.life = NUM_PLAYER_MAX_LIFE;
-    enemy.life = NUM_ENEMY_MAX_LIFE;
+    player.life = player.maxLife;
+    enemy.life = enemy.maxLife;
     setPlayerLife();
     setEnemyLife();
 
     RPSEnemyImage_img.src = "./images/enemy-idle.png";
-    RPSPlayerImage_img = "./images/player.png";
+    RPSPlayerImage_img.src = "./images/player.png";
 
     // RPSPlayerLife1_div.style.backgroundImage = "url('life.png')";
 }

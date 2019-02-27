@@ -1,7 +1,7 @@
 //자바스크립트로 제어할 요소들에 대한 node 선언
 const screen_section = document.getElementById("screen");
 const helpMessage = document.getElementById("help-message");
-const selectArrow_span = document.getElementById("select-arrow");
+const selectArrow_div = document.getElementById("select-arrow");
 const RPSTitle_li = document.getElementById("RPS-title");        //RPS Rock Paper Scissors
 const game2Title_li = document.getElementById("game2-title");
 const game3Title_li = document.getElementById("game3-title");
@@ -15,11 +15,37 @@ const btnLeft_section = document.getElementById("button-left");
 const btnRight_section = document.getElementById("button-right");
 const btnDown_section = document.getElementById("button-down");
 
-const FIRST_GAME = 1;
-const FIRST_TOP = 52;
-const LAST_GAME = 6;
-const LAST_TOP = 262;
-const GAP_ARROW_TOP = 42;   //42px 만큼 이동.
+//각 게임 객체.
+const game1RPS = {
+
+}
+
+const game2ComingSoon = {};
+const game3ComingSoon = {};
+const game4ComingSoon = {};
+const game5ComingSoon = {};
+const game6ComingSoon = {};
+
+//게임 리스트 객체.
+const gameListObj = {
+    firstIdx: 1,
+    firstTop: 52,
+    lastIdx: 6,
+    lastTop: 262,
+    arrowMovingDist: 42,
+    arrayGameList: [game1RPS, game2ComingSoon, game3ComingSoon,
+                    game4ComingSoon, game5ComingSoon, game6ComingSoon],
+    
+}
+
+const GAME_LIST = 0;
+const GAME_RPS = 1;
+
+//게임기 객체.
+const gameMan = {
+    currScreen: GAME_LIST,     //false -> 현재 화면 List인 상태.
+}
+
 let current_arrow_top = 0;
 let current_list = 0;
 
@@ -36,7 +62,7 @@ let setHelpMessage = function (message) {
 }
 
 let initListArrow = function () {
-    selectArrow_span.style.top = "52px";
+    selectArrow_div.style.top = "52px";
     current_arrow_top = 52;
     current_list_stage = 1;
     selectedGameEffects();
@@ -44,30 +70,30 @@ let initListArrow = function () {
 
 //테스트용.
 let downListArrow = function () {
-    current_arrow_top += GAP_ARROW_TOP;
-    selectArrow_span.style.top = current_arrow_top + "px";
+    current_arrow_top += gameListObj.arrowMovingDist;
+    selectArrow_div.style.top = current_arrow_top + "px";
     current_list_stage += 1;
     selectedGameEffects();
 }
 
 let upListArrow = function () {
-    current_arrow_top -= GAP_ARROW_TOP;
-    selectArrow_span.style.top = current_arrow_top + "px";
+    current_arrow_top -= gameListObj.arrowMovingDist;
+    selectArrow_div.style.top = current_arrow_top + "px";
     current_list_stage -= 1;
     selectedGameEffects();
 }
 
 let goToTopListArrow = function () { //맨 아래에서 다시 아래버튼 눌렀을 때, 화살표 제일 위로
-    current_arrow_top = FIRST_TOP;
-    selectArrow_span.style.top = current_arrow_top + "px";
-    current_list_stage = FIRST_GAME;
+    current_arrow_top = gameListObj.firstTop;
+    selectArrow_div.style.top = current_arrow_top + "px";
+    current_list_stage = gameListObj.firstIdx;
     selectedGameEffects();
 }
 
 let goToBottomListArrow = function () {  //맨 위에서 다시 up 버튼 눌렀을 때, 화살표 제일 아래로.
-    current_arrow_top = LAST_TOP;
-    selectArrow_span.style.top = current_arrow_top + "px";
-    current_list_stage = LAST_GAME;
+    current_arrow_top = gameListObj.lastTop;
+    selectArrow_div.style.top = current_arrow_top + "px";
+    current_list_stage = gameListObj.lastIdx;
     selectedGameEffects();
 }
 
@@ -140,7 +166,7 @@ btnUp_section.addEventListener('click', function () {
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
     if(true === screen.isList) {
-        if (FIRST_GAME === current_list_stage) {
+        if (gameListObj.firstIdx === current_list_stage) {
             goToBottomListArrow();
         } else {
             upListArrow();
@@ -167,7 +193,7 @@ btnDown_section.addEventListener('click', function () {
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
     if(true === screen.isList) {
-        if (LAST_GAME === current_list_stage) {
+        if (gameListObj.lastIdx === current_list_stage) {
             goToTopListArrow();
         } else {
             downListArrow();
