@@ -4,7 +4,9 @@
 <head>
     <title>Game-Man!</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="game.css">
     <link rel="stylesheet" href="RPS.css">
+    <link rel="stylesheet" href="baseball.css">
 </head>
 
 <body>
@@ -13,7 +15,7 @@
             <section id="screen" class="screen-game-select">
                 <p id="screen-header" class="screen-text">&#x1F3AE; Game Select &#x1F3AE;</p>
                 <section id="screen-contents">
-                    <div id="select-arrow" class="screen-text"></div>     <!-- &#x27A1; -->
+                    <div id="select-arrow" class="screen-text"></div> <!-- &#x27A1; -->
                     <section id="game-list">
                         <ul>
                             <li class="game screen-text" id="RPS-title">1. Rock Paper Scissors</li>
@@ -27,13 +29,14 @@
                 </section>
             </section>
 
-            <section id="RPS" class="screen-RPS">
-                <p id="RPS-header" class="screen-text">
+            <section id="RPS" class="screen">
+                <p id="RPS-header" class="screen-text game-header">
                     <span id="RPS-header-R">Rock </span>
                     <span id="RPS-header-P">Paper</span>
-                    <span id="RPS-header-S">Scissors!</span></p>
-                <section id="RPS-contents">
-                    <section id="RPS-rules">
+                    <span id="RPS-header-S">Scissors!</span>
+                </p>
+                <section id="RPS-contents game-contents">
+                    <section id="RPS-rules" class="game-rules">
                         <p class="screen-text">가위바위보를 이겨서 상대방의 체력을 깎아라!</p><br>
                         <p class="screen-text">가위바위보로 마왕을 무찌르고 세상을 구하자!</p><br>
                     </section>
@@ -75,9 +78,46 @@
                     </section>
                 </section>
             </section>
-            <section class="message">
-                    <p id="help-message" class="screen-text">A : Select</p>
+
+            <section id="baseball" class="screen">
+                <p id="baseball-header" class="screen-text game-header">
+                    BASEBALL!
+                </p>
+                <section id="baseball-contents" class="game-contents">
+                    <section id="baseball-rules" class="game-rules">
+                        <p class="screen-text">랜덤으로 생성된 세 자리 숫자를 맞추자!</p><br>
+                        <p class="screen-text">Strike : 숫자도 포함되고, 위치도 맞춘 갯수!</p><br>
+                        <p class="screen-text">Ball : 숫자는 포함되지만, 위치는 틀린 갯수!</p><br>
+                        <p class="screen-text">Out : 정답에 제출한 숫자가 아무것도 없을 때!</p><br>
+                    </section>
+                    <section id="baseball-play">
+                        <!-- 바로 이전 결과 전광판 -->
+                        <section id="baseball-scoreboard" class="screen-text">
+                            <p id="submitted-number">123</p>
+                            <div id="result-strike">S <span id="strike-count">● ○ ○</p></div>
+                            <div id="result-ball">B <span id="ball-count">● ● ○</p></div>
+                        </section>
+                        <!-- 생명야구공 -->
+                        <section id="baseball-life">
+                            <section id="baseball-life-top">
+                                
+                            </section>
+                            <section id="baseball-life-bottom"></section>
+                        </section>
+                        <!-- 정답 입력 패널 -->
+                        <section id="baseball-input-field" class="screen-text">
+                            <span id="baseball-first-number" class="baseball-input">1</span>
+                            <span id="baseball-second-number" class="baseball-input">2</span>
+                            <span id="baseball-third-number" class="baseball-input">_</span>
+                        </section>
+                        <!-- 번호입력판 그리드로 구현. -->
+                        
+                    </section>
                 </section>
+            </section>
+            <section class="message">
+                <p id="help-message" class="screen-text">A : Select</p>
+            </section>
         </section>
         <section id="controller">
             <section id="buttons-action">
