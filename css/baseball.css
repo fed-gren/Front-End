@@ -55,3 +55,30 @@
     line-height: 100px;
     margin: 0 10px 10px;
 }
+
+#baseball-input-button {
+    display: grid;
+    grid-template-columns: 110px 110px 110px;
+    padding: 10px;
+    text-align: center;
+    font-size: 36px;
+    position: absolute;
+    bottom: 0px;
+    left: calc(50% - 175px);
+}
+
+.grid-item {
+    cursor: pointer;
+    border: 2px groove #303030;
+    width: 100px;
+    margin-bottom: 8px;
+    text-align: center;
+    /* position: absolute; */
+    /* left: calc(50% - 50px); */
+    margin-left: calc(50% - 50px);
+}
+
+.baseball-selected-number {
+    background: rgb(28, 83, 0);
+}
+
