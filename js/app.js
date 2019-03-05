@@ -39,11 +39,12 @@ const gameListObj = {
 }
 
 const GAME_LIST = 0;
-const GAME_RPS = 1;
+const GAME_RPS = 1;     //rock paper scissors
+const GAME_BB = 2;      //baseball
 
 //게임기 객체.
 const gameMan = {
-    currScreen: GAME_LIST,     //false -> 현재 화면 List인 상태.
+    currScreen: GAME_BB,     //false -> 현재 화면 List인 상태.
 }
 
 let current_arrow_top = 0;
@@ -52,10 +53,6 @@ let current_list = 0;
 const DEFAULT_HELP_MESSAGE = "A : Select";
 
 let gameList = [0, RPSTitle_li, game2Title_li, game3Title_li, game4Title_li, game5Title_li, game6Title_li];
-
-let screen = {
-    isList: true    //현재 게임 목록 상태라면 true, 아니면 false 
-}
 
 let setHelpMessage = (message) => {
     helpMessage.innerText = message;
@@ -109,7 +106,7 @@ let choiceGame = () => {
     switch (gameList[current_list_stage]) {
         case RPSTitle_li:
             startRPS();
-            screen.isList = false;
+            gameMan.currScreen = GAME_RPS;
             break;
         case game2Title_li:
             console.log("game2 choice");
@@ -137,7 +134,7 @@ btnA_section.addEventListener('click', () => {
     console.log("clicked A, RPS status : " + RPS.status);
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
-    if (screen.isList) {
+    if (GAME_LIST === gameMan.currScreen) {
         console.log("choice game");
         choiceGame();
     } else if (RPS_RULE === RPS.status) {
@@ -154,23 +151,25 @@ btnB_section.addEventListener('click', () => {
         RPS_VICTORY === RPS.status) return;
     if (RPS_RULE === RPS.status) {
         exitRPS();
-        screen.isList = true;
+        gameMan.currScreen = GAME_LIST;
     } else if (RPS_PLAYING === RPS.status) {
         exitRPS();
-        screen.isList = true;
+        gameMan.currScreen = GAME_LIST;
     }
-
 });
 
 btnUp_section.addEventListener('click', () => {
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
-    if(true === screen.isList) {
+    if(GAME_LIST === gameMan.currScreen) {
         if (gameListObj.firstIdx === current_list_stage) {
             goToBottomListArrow();
         } else {
             upListArrow();
         }
+    } else if(GAME_BB === gameMan.currScreen) {
+        //번호판 이동
+        moveInputButton("up");
     }
 });
 btnLeft_section.addEventListener('click', () => {
@@ -180,6 +179,9 @@ btnLeft_section.addEventListener('click', () => {
         moveRPS("left");
         console.log("RPS move to left");
     }
+    if(GAME_BB === gameMan.currScreen) {
+        moveInputButton("left");
+    }
 });
 btnRight_section.addEventListener('click', () => {
     if (RPS_GAME_OVER === RPS.status ||
@@ -188,16 +190,21 @@ btnRight_section.addEventListener('click', () => {
         moveRPS("right");
         console.log("RPS move to right");
     }
+    if(GAME_BB === gameMan.currScreen) {
+        moveInputButton("right");
+    }
 });
 btnDown_section.addEventListener('click', () => {
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
-    if(true === screen.isList) {
+    if(GAME_LIST === gameMan.currScreen) {
         if (gameListObj.lastIdx === current_list_stage) {
             goToTopListArrow();
         } else {
             downListArrow();
         }
+    } else if(GAME_BB === gameMan.currScreen) {
+        moveInputButton("down");
     }
 });
 

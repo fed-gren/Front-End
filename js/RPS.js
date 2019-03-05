@@ -96,7 +96,6 @@ let exitRPS = () => {
     hideRPSTitle();
     setHelpMessage(DEFAULT_HELP_MESSAGE);
     RPS.status = RPS_NO_PLAYING;
-    screen.isList = true;
 }
 
 let startRPS = () => {

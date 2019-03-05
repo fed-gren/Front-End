@@ -56,7 +56,7 @@
     margin: 0 10px 10px;
 }
 
-#baseball-input-button {
+#baseball-input-buttons {
     display: grid;
     grid-template-columns: 110px 110px 110px;
     padding: 10px;
