@@ -39,8 +39,9 @@ const gameListObj = {
 }
 
 const GAME_LIST = 0;
-const GAME_RPS = 1;     //rock paper scissors
-const GAME_BB = 2;      //baseball
+const GAME_RULE = 1;
+const GAME_RPS = 2;     //rock paper scissors
+const GAME_BB = 3;      //baseball
 
 //게임기 객체.
 const gameMan = {
@@ -131,7 +132,6 @@ let choiceGame = () => {
 
 
 btnA_section.addEventListener('click', () => {
-    console.log("clicked A, RPS status : " + RPS.status);
     if (RPS_GAME_OVER === RPS.status ||
         RPS_VICTORY === RPS.status) return;
     if (GAME_LIST === gameMan.currScreen) {
@@ -142,6 +142,8 @@ btnA_section.addEventListener('click', () => {
         playRPS();
     } else if (RPS_PLAYING === RPS.status) {
         compare();
+    } else if (GAME_BB === gameMan.currScreen) {
+        baseballPushA();
     }
 });
 
